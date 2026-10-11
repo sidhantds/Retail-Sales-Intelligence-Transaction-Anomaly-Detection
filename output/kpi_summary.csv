@@ -1,0 +1,6 @@
+metric,value
+total_revenue_success,384742.91
+transaction_volume_success,487.0
+avg_transaction_value,790.03
+fraud_flagged_count,481.0
+fraud_flagged_value,378863.9
