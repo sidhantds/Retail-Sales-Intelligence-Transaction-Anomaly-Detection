@@ -1,51 +1,70 @@
-transaction_id,sender_account_id,receiver_account_id,amount,transaction_type,txn_timestamp,status,fraud_flag,device_used,network_slice_id,latency_ms,bandwidth_mbps,anomaly_score
-TXN1140740719,ACC10603,ACC45278,1441.89,Deposit,2025-01-17 11:00:00,Failed,True,Desktop,Slice1,18,67,-0.07204228685631697
-TXN5282408511,ACC63134,ACC54899,189.27,Deposit,2025-01-17 11:00:00,Success,True,Desktop,Slice1,18,149,-0.0639605223255546
-TXN5769283480,ACC14634,ACC44684,556.32,Transfer,2025-01-17 11:00:00,Failed,True,Mobile,Slice3,3,144,-0.06148255914284184
-TXN4177656671,ACC17862,ACC11488,558.08,Deposit,2025-01-17 11:00:00,Success,True,Desktop,Slice1,19,122,-0.05555266991940566
-TXN5364984512,ACC68793,ACC11919,573.31,Deposit,2025-01-17 11:00:00,Success,True,Desktop,Slice1,14,86,-0.05540973629442647
-TXN2467998038,ACC92520,ACC54323,1436.77,Withdrawal,2025-01-17 11:00:00,Failed,False,Mobile,Slice1,16,192,-0.05116455571031597
-TXN2215717837,ACC95972,ACC50750,483.36,Withdrawal,2025-01-17 11:00:00,Failed,True,Mobile,Slice2,12,56,-0.048981677194994244
-TXN9917648306,ACC88990,ACC64737,1033.4,Withdrawal,2025-01-17 11:00:00,Success,False,Desktop,Slice3,3,167,-0.048910871398676004
-TXN8294020649,ACC17126,ACC78651,129.93,Transfer,2025-01-17 11:00:00,Success,False,Desktop,Slice1,4,157,-0.04717289296258187
-TXN4822042533,ACC27800,ACC69900,301.68,Withdrawal,2025-01-17 11:00:00,Failed,True,Desktop,Slice2,4,192,-0.04590844814251227
-TXN6010804010,ACC59380,ACC52745,1168.41,Withdrawal,2025-01-17 11:00:00,Failed,False,Mobile,Slice3,15,117,-0.04494605306704336
-TXN9984520277,ACC36712,ACC63075,149.22,Deposit,2025-01-17 11:00:00,Success,True,Mobile,Slice3,11,181,-0.042594442449093384
-TXN2407769213,ACC35352,ACC22759,286.5,Transfer,2025-01-17 11:00:00,Failed,False,Mobile,Slice2,8,66,-0.042364149363896764
-TXN4521283693,ACC91378,ACC54434,633.35,Deposit,2025-01-17 11:00:00,Failed,False,Desktop,Slice1,18,126,-0.04176924442979735
-TXN1724458969,ACC14381,ACC44593,1003.45,Deposit,2025-01-17 11:00:00,Success,False,Desktop,Slice2,5,191,-0.0329921798944427
-TXN6593949300,ACC94052,ACC92241,256.17,Transfer,2025-01-17 11:00:00,Failed,False,Desktop,Slice3,13,148,-0.030288536043743375
-TXN7190517370,ACC38736,ACC57803,87.4,Deposit,2025-01-17 10:25:00,Success,True,Desktop,Slice1,3,236,-0.0263951099316706
-TXN6774647261,ACC83881,ACC65341,329.15,Transfer,2025-01-17 11:00:00,Success,True,Desktop,Slice2,15,192,-0.024969096784676736
-TXN2720807903,ACC93407,ACC21651,1434.83,Withdrawal,2025-01-17 10:11:00,Success,False,Mobile,Slice3,20,220,-0.014687166472165392
-TXN6418299376,ACC39373,ACC76158,1457.81,Withdrawal,2025-01-17 10:33:00,Success,False,Desktop,Slice3,18,57,-0.009413896816166889
-TXN7957686611,ACC38995,ACC74535,160.0,Transfer,2025-01-17 10:09:00,Success,False,Desktop,Slice1,4,249,-0.008136871606303053
-TXN8460678344,ACC40938,ACC18461,187.41,Deposit,2025-01-17 10:44:00,Success,True,Desktop,Slice1,19,216,-0.007895216401114458
-TXN6378209363,ACC33501,ACC28336,1184.41,Transfer,2025-01-17 10:57:00,Failed,False,Mobile,Slice3,4,238,-0.007837572383775249
-TXN2413731893,ACC49033,ACC49745,241.5,Deposit,2025-01-17 10:42:00,Success,True,Mobile,Slice2,18,64,-0.0070501273428960065
-TXN6186045168,ACC56851,ACC90021,1174.75,Transfer,2025-01-17 10:16:00,Failed,False,Desktop,Slice1,3,235,-0.006923963413705603
-TXN1672215014,ACC57995,ACC32223,513.84,Withdrawal,2025-01-17 10:25:00,Success,True,Mobile,Slice2,20,62,-0.006006893158739368
-TXN2169752734,ACC43792,ACC51105,72.97,Withdrawal,2025-01-17 10:25:00,Success,True,Mobile,Slice2,5,216,-0.005693066410380587
-TXN5052028045,ACC19518,ACC25846,1346.57,Withdrawal,2025-01-17 10:46:00,Failed,True,Desktop,Slice2,19,53,-0.005412917084860469
-TXN4215761542,ACC49303,ACC99378,313.72,Deposit,2025-01-17 10:32:00,Failed,True,Desktop,Slice1,19,55,-0.0050179369321801115
-TXN3265508267,ACC88851,ACC92572,1208.12,Deposit,2025-01-17 10:16:00,Failed,True,Desktop,Slice1,20,243,-0.004949145527462728
-TXN8272540722,ACC54935,ACC25665,1404.91,Withdrawal,2025-01-17 10:01:00,Failed,False,Desktop,Slice1,7,221,-0.0043275932888975355
-TXN1865967097,ACC45358,ACC35313,1370.46,Transfer,2025-01-17 10:23:00,Success,True,Mobile,Slice3,3,73,-0.0041121079923091
-TXN6602724599,ACC83705,ACC33437,1436.82,Withdrawal,2025-01-17 10:04:00,Success,True,Desktop,Slice2,19,104,-0.0034732426604552336
-TXN8725793891,ACC35927,ACC52926,1275.28,Deposit,2025-01-17 10:11:00,Success,False,Desktop,Slice1,16,68,-0.003438961777111671
-TXN8112885483,ACC88171,ACC83474,1420.72,Transfer,2025-01-17 10:03:00,Failed,False,Desktop,Slice3,4,140,-0.0033698944434177314
-TXN2013672155,ACC12216,ACC68938,245.59,Transfer,2025-01-17 10:11:00,Failed,True,Desktop,Slice2,3,56,-0.003109617261674913
-TXN7995329384,ACC22887,ACC77756,1393.08,Withdrawal,2025-01-17 10:40:00,Success,True,Desktop,Slice1,4,73,-0.0030730478431040265
-TXN5583019441,ACC65895,ACC35639,1429.67,Transfer,2025-01-17 10:47:00,Success,True,Desktop,Slice1,7,68,-0.0026864145487119906
-TXN3679557633,ACC63042,ACC67654,1479.46,Deposit,2025-01-17 10:24:00,Failed,True,Desktop,Slice3,17,69,-0.002581763268715842
-TXN3797326632,ACC17079,ACC90748,1107.97,Transfer,2025-01-17 10:32:00,Success,True,Desktop,Slice3,4,247,-0.0024418304196601737
-TXN9451536828,ACC62122,ACC26214,366.82,Withdrawal,2025-01-17 10:21:00,Success,False,Desktop,Slice1,4,52,-0.0022338664915508843
-TXN4101163005,ACC74504,ACC51180,1476.97,Transfer,2025-01-17 10:53:00,Success,True,Mobile,Slice1,3,79,-0.00221703795093664
-TXN2415439100,ACC92329,ACC71125,1414.14,Transfer,2025-01-17 10:30:00,Failed,False,Mobile,Slice2,4,52,-0.0021930837419192883
-TXN5303967789,ACC16801,ACC30926,71.67,Transfer,2025-01-17 10:46:00,Failed,False,Desktop,Slice1,19,250,-0.0020468748485431565
-TXN9048178318,ACC98875,ACC12414,1279.75,Transfer,2025-01-17 10:17:00,Failed,True,Desktop,Slice3,19,59,-0.0013347979035882584
-TXN7284540949,ACC46333,ACC52400,105.99,Withdrawal,2025-01-17 10:37:00,Failed,True,Desktop,Slice2,3,87,-0.0012719704533310505
-TXN4482249133,ACC17762,ACC70271,1460.24,Transfer,2025-01-17 10:37:00,Failed,False,Mobile,Slice1,20,98,-0.000839122692013583
-TXN3181213064,ACC79424,ACC13917,1480.5,Transfer,2025-01-17 10:15:00,Success,True,Desktop,Slice3,17,117,-0.0007058877618265624
-TXN5725214404,ACC30050,ACC22352,171.75,Deposit,2025-01-17 10:51:00,Failed,False,Mobile,Slice3,20,221,-0.0005593499473138808
-TXN3559474519,ACC95922,ACC88691,91.57,Deposit,2025-01-17 10:55:00,Success,False,Mobile,Slice3,17,210,-0.0002938446538622852
+priority_rank,transaction_id,sender_account_id,receiver_account_id,amount,transaction_type,txn_timestamp,status,fraud_flag,device_used,network_slice_id,latency_ms,bandwidth_mbps,anomaly_score,anomaly_reasons,deviation
+1,TXN8552007460,ACC76710,ACC62664,1493.86,Withdrawal,2025-01-17 10:55:00,Failed,False,Mobile,Slice1,17,69,4,"high_amount, failed_high_value, burst_minute, repeat_account",2.461
+2,TXN4482249133,ACC17762,ACC70271,1460.24,Transfer,2025-01-17 10:37:00,Failed,False,Mobile,Slice1,20,98,3,"high_amount, failed_high_value, high_latency",2.49
+3,TXN2600080898,ACC24168,ACC54187,1449.24,Deposit,2025-01-17 10:29:00,Success,False,Mobile,Slice1,20,109,3,"high_amount, high_latency, shared_pin",2.411
+4,TXN3174104806,ACC35025,ACC67292,1458.87,Deposit,2025-01-17 10:25:00,Failed,False,Mobile,Slice2,4,136,3,"high_amount, failed_high_value, burst_minute",2.256
+5,TXN4170698928,ACC51174,ACC92864,1427.83,Deposit,2025-01-17 10:16:00,Failed,True,Mobile,Slice1,4,145,3,"failed_high_value, repeat_account, shared_pin",2.191
+6,TXN6513452870,ACC66844,ACC30757,497.06,Deposit,2025-01-17 10:25:00,Failed,True,Desktop,Slice3,20,113,3,"high_latency, burst_minute, shared_pin",1.856
+7,TXN4247571145,ACC60921,ACC11419,933.24,Deposit,2025-01-17 10:25:00,Success,True,Mobile,Slice3,20,191,3,"high_latency, burst_minute, shared_pin",1.822
+8,TXN6355066290,ACC14006,ACC27800,485.37,Transfer,2025-01-17 10:50:00,Failed,True,Mobile,Slice3,20,173,3,"high_latency, repeat_account, shared_pin",1.813
+9,TXN7190517370,ACC38736,ACC57803,87.4,Deposit,2025-01-17 10:25:00,Success,True,Desktop,Slice1,3,236,2,"burst_minute, shared_pin",2.815
+10,TXN2415439100,ACC92329,ACC71125,1414.14,Transfer,2025-01-17 10:30:00,Failed,False,Mobile,Slice2,4,52,2,"failed_high_value, low_bandwidth",2.735
+11,TXN3465112627,ACC66845,ACC77043,1478.53,Transfer,2025-01-17 10:54:00,Failed,False,Mobile,Slice2,4,63,2,"high_amount, failed_high_value",2.72
+12,TXN6418299376,ACC39373,ACC76158,1457.81,Withdrawal,2025-01-17 10:33:00,Success,False,Desktop,Slice3,18,57,2,"high_amount, low_bandwidth",2.61
+13,TXN2720807903,ACC93407,ACC21651,1434.83,Withdrawal,2025-01-17 10:11:00,Success,False,Mobile,Slice3,20,220,2,"high_amount, high_latency",2.6
+14,TXN5052028045,ACC19518,ACC25846,1346.57,Withdrawal,2025-01-17 10:46:00,Failed,True,Desktop,Slice2,19,53,2,"failed_high_value, low_bandwidth",2.593
+15,TXN4979176158,ACC76875,ACC22724,1494.2,Deposit,2025-01-17 10:31:00,Failed,True,Mobile,Slice1,6,64,2,"high_amount, failed_high_value",2.542
+16,TXN7174684558,ACC25889,ACC76372,1411.39,Withdrawal,2025-01-17 10:05:00,Failed,True,Desktop,Slice2,6,54,2,"failed_high_value, low_bandwidth",2.516
+17,TXN1140740719,ACC10603,ACC45278,1441.89,Deposit,2025-01-17 11:00:00,Failed,True,Desktop,Slice1,18,67,2,"high_amount, failed_high_value",2.483
+18,TXN9048178318,ACC98875,ACC12414,1279.75,Transfer,2025-01-17 10:17:00,Failed,True,Desktop,Slice3,19,59,2,"low_bandwidth, shared_pin",2.441
+19,TXN2169752734,ACC43792,ACC51105,72.97,Withdrawal,2025-01-17 10:25:00,Success,True,Mobile,Slice2,5,216,2,"burst_minute, shared_pin",2.439
+20,TXN2146674972,ACC37810,ACC38562,1431.06,Transfer,2025-01-17 10:13:00,Success,True,Mobile,Slice2,6,64,2,"high_amount, repeat_account",2.438
+21,TXN3679557633,ACC63042,ACC67654,1479.46,Deposit,2025-01-17 10:24:00,Failed,True,Desktop,Slice3,17,69,2,"high_amount, failed_high_value",2.436
+22,TXN5259427532,ACC19742,ACC32118,147.52,Deposit,2025-01-17 10:53:00,Success,True,Desktop,Slice2,20,92,2,"high_latency, shared_pin",2.425
+23,TXN1739236868,ACC39496,ACC12590,1356.11,Transfer,2025-01-17 10:18:00,Failed,False,Desktop,Slice3,6,56,2,"failed_high_value, low_bandwidth",2.412
+24,TXN4902897998,ACC77412,ACC28013,198.65,Transfer,2025-01-17 10:37:00,Failed,False,Desktop,Slice2,17,56,2,"low_bandwidth, shared_pin",2.361
+25,TXN8299962548,ACC73211,ACC16021,916.9,Deposit,2025-01-17 10:30:00,Failed,True,Mobile,Slice1,20,52,2,"high_latency, low_bandwidth",2.353
+26,TXN4389081475,ACC22912,ACC52637,1250.73,Transfer,2025-01-17 10:55:00,Success,True,Desktop,Slice3,3,213,2,"burst_minute, shared_pin",2.339
+27,TXN7347670619,ACC75685,ACC92454,1488.93,Deposit,2025-01-17 10:29:00,Failed,True,Mobile,Slice2,15,228,2,"high_amount, failed_high_value",2.315
+28,TXN4048657684,ACC53944,ACC73802,1436.4,Withdrawal,2025-01-17 10:41:00,Success,False,Desktop,Slice1,20,156,2,"high_amount, high_latency",2.293
+29,TXN1672215014,ACC57995,ACC32223,513.84,Withdrawal,2025-01-17 10:25:00,Success,True,Mobile,Slice2,20,62,2,"high_latency, burst_minute",2.293
+30,TXN6602724599,ACC83705,ACC33437,1436.82,Withdrawal,2025-01-17 10:04:00,Success,True,Desktop,Slice2,19,104,2,"high_amount, shared_pin",2.29
+31,TXN5206029882,ACC37810,ACC28763,1326.71,Withdrawal,2025-01-17 10:50:00,Success,False,Mobile,Slice1,7,241,2,"repeat_account, shared_pin",2.285
+32,TXN5819697000,ACC91947,ACC51744,481.35,Transfer,2025-01-17 10:12:00,Failed,True,Mobile,Slice3,20,68,2,"high_latency, repeat_account",2.25
+33,TXN1324014316,ACC89533,ACC37839,1271.78,Transfer,2025-01-17 10:25:00,Success,True,Desktop,Slice3,20,93,2,"high_latency, burst_minute",2.243
+34,TXN4407425052,ACC56321,ACC92481,862.47,Withdrawal,2025-01-17 10:50:00,Failed,False,Mobile,Slice1,4,53,2,"low_bandwidth, shared_pin",2.242
+35,TXN7571871959,ACC76210,ACC79065,1254.83,Deposit,2025-01-17 10:57:00,Success,False,Desktop,Slice3,20,92,2,"high_latency, repeat_account",2.228
+36,TXN7417651729,ACC26106,ACC21043,1371.8,Transfer,2025-01-17 10:09:00,Failed,True,Mobile,Slice1,8,61,2,"failed_high_value, low_bandwidth",2.224
+37,TXN1285498928,ACC57627,ACC98533,374.88,Deposit,2025-01-17 10:38:00,Failed,True,Mobile,Slice1,20,81,2,"high_latency, shared_pin",2.218
+38,TXN3581606217,ACC78890,ACC44155,1360.18,Withdrawal,2025-01-17 10:53:00,Failed,True,Desktop,Slice3,13,57,2,"failed_high_value, low_bandwidth",2.151
+39,TXN5388688267,ACC17167,ACC98216,1189.27,Deposit,2025-01-17 10:25:00,Success,False,Desktop,Slice2,6,60,2,"low_bandwidth, burst_minute",2.147
+40,TXN9960780796,ACC16531,ACC41695,1485.22,Transfer,2025-01-17 10:44:00,Failed,False,Mobile,Slice2,18,159,2,"high_amount, failed_high_value",2.136
+41,TXN5589441104,ACC49865,ACC86726,1081.36,Transfer,2025-01-17 10:12:00,Success,True,Desktop,Slice1,18,58,2,"low_bandwidth, repeat_account",2.13
+42,TXN6454901818,ACC18477,ACC35128,1465.1,Transfer,2025-01-17 10:45:00,Failed,False,Desktop,Slice2,7,200,2,"high_amount, failed_high_value",2.116
+43,TXN6154853073,ACC37651,ACC65346,1446.89,Withdrawal,2025-01-17 10:15:00,Failed,True,Mobile,Slice1,15,83,2,"high_amount, failed_high_value",2.099
+44,TXN2332983910,ACC19647,ACC41163,1483.09,Transfer,2025-01-17 10:51:00,Failed,False,Desktop,Slice3,9,209,2,"high_amount, failed_high_value",2.091
+45,TXN8823192902,ACC83967,ACC72954,1447.48,Deposit,2025-01-17 10:36:00,Failed,False,Mobile,Slice1,6,118,2,"high_amount, failed_high_value",2.053
+46,TXN4822042533,ACC27800,ACC69900,301.68,Withdrawal,2025-01-17 11:00:00,Failed,True,Desktop,Slice2,4,192,2,"repeat_account, shared_pin",2.029
+47,TXN7747723984,ACC75741,ACC84166,1090.87,Transfer,2025-01-17 10:23:00,Failed,True,Desktop,Slice1,20,198,2,"high_latency, repeat_account",1.99
+48,TXN9841219846,ACC24856,ACC54104,265.23,Withdrawal,2025-01-17 10:25:00,Success,True,Desktop,Slice2,12,59,2,"low_bandwidth, burst_minute",1.979
+49,TXN2467998038,ACC92520,ACC54323,1436.77,Withdrawal,2025-01-17 11:00:00,Failed,False,Mobile,Slice1,16,192,2,"high_amount, failed_high_value",1.974
+50,TXN8594411611,ACC61170,ACC73104,1456.87,Deposit,2025-01-17 10:26:00,Failed,True,Mobile,Slice3,8,117,2,"high_amount, failed_high_value",1.897
+51,TXN8622771982,ACC82285,ACC37850,407.35,Withdrawal,2025-01-17 10:46:00,Failed,True,Desktop,Slice3,8,61,2,"low_bandwidth, shared_pin",1.896
+52,TXN3337399700,ACC13343,ACC89104,1480.16,Deposit,2025-01-17 10:24:00,Success,False,Mobile,Slice2,10,111,2,"high_amount, shared_pin",1.872
+53,TXN2545526306,ACC47841,ACC84653,1468.59,Transfer,2025-01-17 10:32:00,Failed,True,Mobile,Slice2,11,109,2,"high_amount, failed_high_value",1.834
+54,TXN3342617288,ACC99232,ACC40298,454.59,Deposit,2025-01-17 10:25:00,Success,True,Desktop,Slice2,20,130,2,"high_latency, burst_minute",1.822
+55,TXN7009664995,ACC12808,ACC87838,1454.09,Deposit,2025-01-17 10:03:00,Failed,False,Desktop,Slice1,11,187,2,"high_amount, failed_high_value",1.795
+56,TXN1026668467,ACC36112,ACC39686,1483.4,Withdrawal,2025-01-17 10:21:00,Failed,False,Mobile,Slice2,10,138,2,"high_amount, failed_high_value",1.773
+57,TXN4930471112,ACC28678,ACC21230,1485.37,Withdrawal,2025-01-17 10:02:00,Failed,False,Mobile,Slice2,13,149,2,"high_amount, failed_high_value",1.756
+58,TXN9584950467,ACC38378,ACC58022,1449.24,Transfer,2025-01-17 10:10:00,Failed,True,Mobile,Slice2,13,119,2,"high_amount, failed_high_value",1.746
+59,TXN9697363753,ACC23612,ACC74572,1452.12,Deposit,2025-01-17 10:23:00,Failed,True,Desktop,Slice2,13,168,2,"high_amount, failed_high_value",1.71
+60,TXN3884612815,ACC79800,ACC11375,1453.39,Withdrawal,2025-01-17 10:12:00,Failed,False,Mobile,Slice2,13,151,2,"high_amount, failed_high_value",1.68
+61,TXN2768153137,ACC45808,ACC45800,936.43,Transfer,2025-01-17 10:34:00,Success,False,Mobile,Slice1,20,150,2,"high_latency, shared_pin",1.669
+62,TXN1548767950,ACC11070,ACC77895,1445.47,Deposit,2025-01-17 10:53:00,Failed,False,Desktop,Slice1,12,139,2,"high_amount, failed_high_value",1.65
+63,TXN8506838667,ACC27786,ACC77787,1437.81,Transfer,2025-01-17 10:17:00,Failed,False,Mobile,Slice1,11,153,2,"high_amount, failed_high_value",1.629
+64,TXN3914566506,ACC45926,ACC76590,979.89,Withdrawal,2025-01-17 10:25:00,Failed,False,Mobile,Slice2,15,225,2,"burst_minute, shared_pin",1.558
+65,TXN4168078707,ACC66726,ACC28270,567.4,Deposit,2025-01-17 10:05:00,Success,True,Desktop,Slice3,19,128,2,"repeat_account, shared_pin",1.55
+66,TXN2889971008,ACC79989,ACC65977,769.38,Transfer,2025-01-17 10:25:00,Success,False,Mobile,Slice2,5,109,2,"burst_minute, shared_pin",1.472
+67,TXN5816994707,ACC11488,ACC74499,290.98,Withdrawal,2025-01-17 10:58:00,Success,False,Mobile,Slice1,14,162,2,"repeat_account, shared_pin",1.274
+68,TXN3688144089,ACC86726,ACC75108,698.69,Transfer,2025-01-17 10:58:00,Success,True,Mobile,Slice2,10,82,2,"repeat_account, shared_pin",1.21
+69,TXN2515439857,ACC18381,ACC76710,449.56,Withdrawal,2025-01-17 10:01:00,Failed,False,Desktop,Slice1,14,191,2,"repeat_account, shared_pin",1.164

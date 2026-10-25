@@ -1,0 +1,4 @@
+transaction_type,txn_count,total_value,pct_of_total
+Transfer,192,157220.62,40.86
+Deposit,150,119501.08,31.06
+Withdrawal,145,108021.21,28.08

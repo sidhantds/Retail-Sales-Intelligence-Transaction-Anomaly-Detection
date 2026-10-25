@@ -1,0 +1,4 @@
+slice_name,txn_count,avg_latency_ms,avg_bandwidth_mbps
+Slice1,323,11.9,145.1
+Slice2,340,11.3,148.9
+Slice3,337,11.9,151.3

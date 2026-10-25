@@ -1,63 +1,84 @@
 # Retail Sales Intelligence & Transaction Anomaly Detection
 
 End-to-end analytics and anomaly-detection pipeline on a 1,000-row
-transaction dataset, using PostgreSQL, SQL, Python, and Tableau.
+transaction dataset, built with **SQL, Python (pandas, NumPy),
+Seaborn/Matplotlib and Tableau**.
 
 ## What it does
-- Normalized relational schema (`sql/01_schema.sql`) with primary
-  and foreign keys across accounts, devices, network slices, and
-  transactions.
-- Data cleaning and validation (`python/clean_data.py`).
-- KPI calculation and exploratory analysis — revenue, transaction
-  volume, average transaction value, contribution by type and
-  device — in both SQL (`sql/02_kpis.sql`) and Python
-  (`python/eda.py`).
-- Isolation Forest anomaly detection (`python/anomaly_detection.py`)
-  on transaction-level features, producing a ranked, prioritized
-  review list for fraud screening.
-- A Tableau-ready extract and dashboard spec (`dashboard/`).
-- Documented workflow, assumptions, limitations, and
-  recommendations (`docs/workflow.md`).
+- **Data cleaning and validation** (`python/clean_data.py`): renames
+  columns, removes duplicates, fixes data types, splits geolocation
+  into latitude/longitude, and drops invalid rows.
+- **KPIs and EDA** (`python/eda.py`): revenue, transaction volume,
+  average transaction value, contribution by type and device,
+  failed-transaction rate and a 5-minute trend, plus 6 charts in
+  `output/charts/`.
+- **Rule-based anomaly detection** (`python/anomaly_detection.py`):
+  scores every transaction against 7 explainable rules built from
+  percentiles and z-scores (pandas + NumPy only). Transactions that
+  break 2 or more rules go into a ranked review list. Each row lists
+  **why** it was flagged.
+- **SQL layer** (`sql/`): a normalized schema with primary and
+  foreign keys, KPI queries, and the anomaly rules rewritten in SQL
+  with CTEs and window functions (`NTILE`, `SUM() OVER`).
+  `python/load_to_sqlite.py` loads the data into SQLite and runs
+  every query, so no database server is needed.
+- **Tableau** (`dashboard/`): a single wide extract plus a dashboard
+  spec.
 
 ## Quick start
 ```bash
-git clone <this-repo>
-cd retail-sales-intelligence
-./setup.sh
+git clone https://github.com/sidhantds/Retail-Sales-Intelligence-Transaction-Anomaly-Detection.git
+cd Retail-Sales-Intelligence-Transaction-Anomaly-Detection
+pip install -r requirements.txt
+python run_pipeline.py
 ```
-This installs dependencies and runs the full pipeline: clean data
--> KPIs/EDA -> anomaly detection -> Tableau extract. Outputs land in
-`output/` and `dashboard/`.
+Outputs land in `output/` and `dashboard/`.
 
-To also load the data into PostgreSQL:
-```bash
-export DATABASE_URL=postgresql://user:pass@host:5432/dbname
-python3 python/load_to_postgres.py
-```
-Then run the KPI queries in `sql/02_kpis.sql` directly against the
-database.
+## Key results
+| Metric | Value |
+|---|---|
+| Successful transaction value | 384,742.91 |
+| Successful transactions | 487 of 1,000 |
+| Average successful transaction | 790.03 |
+| Largest contributor | Transfers, 40.9% of value |
+| Failed-transaction rate | 48.7% to 53.2% by type |
+| Transactions flagged for review | 69 (6.9%) |
+
+![Value by type](output/charts/01_value_by_type.png)
+![Trend](output/charts/02_value_trend_5min.png)
+![Flagged transactions](output/charts/07_anomalies_scatter.png)
+
+## Anomaly rules
+| Rule | Fires when |
+|---|---|
+| `high_amount` | amount is in the top 5% |
+| `failed_high_value` | status is Failed and amount is in the top 10% |
+| `high_latency` | latency is in the top 5% |
+| `low_bandwidth` | bandwidth is in the bottom 5% |
+| `burst_minute` | the transaction's minute has a volume z-score above 2 |
+| `repeat_account` | sender or receiver account appears in more than one transaction |
+| `shared_pin` | the PIN code is used by more than one sender account |
 
 ## Project layout
 ```
-data/raw/               source CSV
-sql/                     schema + KPI queries
-python/                  cleaning, EDA, anomaly detection, loaders
-dashboard/               Tableau extract + dashboard spec
-output/                  generated KPI summaries, EDA report, review list
-docs/                    workflow, assumptions, limitations
+data/raw/            source CSV
+python/              cleaning, EDA, anomaly detection, SQLite loader, Tableau export
+sql/                 schema, KPI queries, anomaly checks in SQL
+output/              cleaned data, KPI summary, reports, charts, SQL results
+dashboard/           Tableau extract + dashboard spec
+docs/                workflow, assumptions, limitations
+run_pipeline.py      runs every step in order
 ```
 
 ## Skills
-SQL, PostgreSQL, Python, Pandas, NumPy, Scikit-learn, Isolation
-Forest, Anomaly Detection, Data Cleaning, Data Validation,
-Exploratory Data Analysis, Feature Engineering, KPI Reporting,
-Business Intelligence, Tableau, Data Visualization, Relational
-Database Design, Data-Driven Decision-Making
+SQL, SQLite, Python, Pandas, NumPy, Seaborn, Matplotlib, Data Cleaning,
+Data Validation, Exploratory Data Analysis, Statistical Anomaly
+Detection (z-scores, percentiles), KPI Reporting, Relational Database
+Design, Tableau, Data Visualization
 
 ## Note on the source data
-The original dataset mixes retail-style transaction fields (amount,
-type, status) with banking/network fields (PIN code, network slice,
-latency) rather than product/SKU-level data. KPIs and dashboards in
-this rebuild are reported by transaction type and device rather than
-by product category as a result — see `docs/workflow.md` for the
-full list of assumptions and limitations.
+The dataset is synthetic. It mixes retail-style transaction fields
+(amount, type, status) with banking/network fields (PIN code, network
+slice, latency), covers only one hour (10:01 to 11:00 on 2025-01-17),
+and its `fraud_flag` is set on about 48% of rows, apparently at
+random. See `docs/workflow.md` for all assumptions and limitations.

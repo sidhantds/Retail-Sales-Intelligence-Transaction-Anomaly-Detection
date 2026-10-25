@@ -4,7 +4,6 @@ Data cleaning and validation for the raw transaction export.
 Input:  data/raw/transaction_data.csv
 Output: output/cleaned_transactions.csv
 """
-import re
 import sys
 from pathlib import Path
 
@@ -14,47 +13,35 @@ ROOT = Path(__file__).resolve().parent.parent
 RAW_PATH = ROOT / "data" / "raw" / "transaction_data.csv"
 OUT_PATH = ROOT / "output" / "cleaned_transactions.csv"
 
-
-def parse_geolocation(value: str):
-    """Split 'lat N/S, lon E/W' into signed decimal degrees."""
-    if not isinstance(value, str):
-        return (None, None)
-    m = re.match(
-        r"\s*([\d.]+)\s*([NS])\s*,\s*(-?[\d.]+)\s*([EW])\s*", value
-    )
-    if not m:
-        return (None, None)
-    lat, lat_dir, lon, lon_dir = m.groups()
-    lat = float(lat) * (1 if lat_dir == "N" else -1)
-    lon = float(lon) * (1 if lon_dir == "E" else -1)
-    return (lat, lon)
+COLUMN_NAMES = {
+    "Transaction ID": "transaction_id",
+    "Sender Account ID": "sender_account_id",
+    "Receiver Account ID": "receiver_account_id",
+    "Transaction Amount": "amount",
+    "Transaction Type": "transaction_type",
+    "Timestamp": "txn_timestamp",
+    "Transaction Status": "status",
+    "Fraud Flag": "fraud_flag",
+    "Geolocation (Latitude/Longitude)": "geolocation",
+    "Device Used": "device_used",
+    "Network Slice ID": "network_slice_id",
+    "Latency (ms)": "latency_ms",
+    "Slice Bandwidth (Mbps)": "bandwidth_mbps",
+    "PIN Code": "pin_code",
+}
 
 
 def main():
     df = pd.read_csv(RAW_PATH)
     n_raw = len(df)
 
-    # Standardize column names
-    df.columns = [
-        "transaction_id",
-        "sender_account_id",
-        "receiver_account_id",
-        "amount",
-        "transaction_type",
-        "txn_timestamp",
-        "status",
-        "fraud_flag",
-        "geolocation",
-        "device_used",
-        "network_slice_id",
-        "latency_ms",
-        "bandwidth_mbps",
-        "pin_code",
-    ]
+    # Rename by name (not position) so a reordered export still works
+    df = df.rename(columns=COLUMN_NAMES)
 
     # Drop exact duplicate rows and duplicate transaction ids
     df = df.drop_duplicates()
     df = df.drop_duplicates(subset="transaction_id", keep="first")
+    dropped_duplicates = n_raw - len(df)
 
     # Type conversions and validation
     df["amount"] = pd.to_numeric(df["amount"], errors="coerce")
@@ -65,10 +52,13 @@ def main():
     df["latency_ms"] = pd.to_numeric(df["latency_ms"], errors="coerce")
     df["bandwidth_mbps"] = pd.to_numeric(df["bandwidth_mbps"], errors="coerce")
 
-    # Split geolocation into latitude / longitude
-    lat_lon = df["geolocation"].apply(parse_geolocation)
-    df["latitude"] = lat_lon.apply(lambda t: t[0])
-    df["longitude"] = lat_lon.apply(lambda t: t[1])
+    # Split geolocation ("34.0522 N, -74.006 W") into latitude / longitude.
+    # Every row in the source ends in "W", even ones with positive
+    # longitudes, so the letter is unreliable. Keep the signed number as
+    # written and drop the letters.
+    geo = df["geolocation"].str.replace(r"[NSEW]", "", regex=True).str.split(",", expand=True)
+    df["latitude"] = pd.to_numeric(geo[0], errors="coerce")
+    df["longitude"] = pd.to_numeric(geo[1], errors="coerce")
     df = df.drop(columns=["geolocation"])
 
     # Drop rows missing required fields
@@ -91,11 +81,12 @@ def main():
     OUT_PATH.parent.mkdir(parents=True, exist_ok=True)
     df.to_csv(OUT_PATH, index=False)
 
-    print(f"Raw rows:            {n_raw}")
-    print(f"Dropped (missing req): {dropped_missing}")
+    print(f"Raw rows:                  {n_raw}")
+    print(f"Dropped (duplicates):      {dropped_duplicates}")
+    print(f"Dropped (missing req):     {dropped_missing}")
     print(f"Dropped (negative amount): {dropped_negative}")
-    print(f"Clean rows:           {len(df)}")
-    print(f"Written to:           {OUT_PATH}")
+    print(f"Clean rows:                {len(df)}")
+    print(f"Written to:                {OUT_PATH}")
 
 
 if __name__ == "__main__":

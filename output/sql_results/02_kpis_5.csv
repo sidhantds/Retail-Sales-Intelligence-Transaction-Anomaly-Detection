@@ -1,0 +1,4 @@
+transaction_type,failed_count,total_count,failed_pct
+Withdrawal,165,310,53.23
+Deposit,166,316,52.53
+Transfer,182,374,48.66
