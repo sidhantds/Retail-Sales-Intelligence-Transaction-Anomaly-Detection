@@ -1,8 +1,25 @@
-# Retail Sales Intelligence & Transaction Anomaly Detection
+# 🛒 Retail Sales Intelligence & Transaction Anomaly Detection
 
-End-to-end analytics and anomaly-detection pipeline on a 1,000-row
+![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![SQL](https://img.shields.io/badge/SQLite-003B57?style=flat-square&logo=sqlite&logoColor=white)
+![pandas](https://img.shields.io/badge/pandas-150458?style=flat-square&logo=pandas&logoColor=white)
+![Tableau](https://img.shields.io/badge/Tableau-E97627?style=flat-square&logo=tableau&logoColor=white)
+
+End to end analytics and anomaly detection pipeline on a 1,000 row
 transaction dataset, built with **SQL, Python (pandas, NumPy),
 Seaborn/Matplotlib and Tableau**.
+
+> **Result:** One command cleans the data, builds KPIs and 7 charts, scores every transaction against 7 explainable rules, and ships a ranked review list of 69 flagged transactions (6.9%), each with the reasons it was flagged.
+
+```mermaid
+flowchart LR
+    A[Raw CSV] --> B[Clean and validate]
+    B --> C[KPIs and EDA]
+    B --> D[Anomaly scoring]
+    B --> E[SQLite and SQL queries]
+    D --> F[Ranked review list]
+    C & D --> G[Tableau extract]
+```
 
 ## What it does
 - **Data cleaning and validation** (`python/clean_data.py`): renames
