@@ -11,15 +11,7 @@ Seaborn/Matplotlib and Tableau**.
 
 > **Result:** One command cleans the data, builds KPIs and 7 charts, scores every transaction against 7 explainable rules, and ships a ranked review list of 69 flagged transactions (6.9%), each with the reasons it was flagged.
 
-```mermaid
-flowchart LR
-    A[Raw CSV] --> B[Clean and validate]
-    B --> C[KPIs and EDA]
-    B --> D[Anomaly scoring]
-    B --> E[SQLite and SQL queries]
-    D --> F[Ranked review list]
-    C & D --> G[Tableau extract]
-```
+See [System design](#system-design) for how the pipeline is built.
 
 ## What it does
 - **Data cleaning and validation** (`python/clean_data.py`): renames
@@ -75,6 +67,62 @@ Outputs land in `output/` and `dashboard/`.
 | `burst_minute` | the transaction's minute has a volume z-score above 2 |
 | `repeat_account` | sender or receiver account appears in more than one transaction |
 | `shared_pin` | the PIN code is used by more than one sender account |
+
+## System design
+
+### Architecture
+
+```mermaid
+flowchart LR
+    RAW[("data/raw/<br/>transaction_data.csv")] --> CL["clean_data.py<br/>validate, dedupe, type, split geo"]
+    CL --> CLEAN[("output/<br/>cleaned_transactions.csv<br/>single source of truth")]
+
+    CLEAN --> EDA["eda.py<br/>KPIs + 6 charts"]
+    CLEAN --> AD["anomaly_detection.py<br/>7 rules, score, rank"]
+    CLEAN --> LD["load_to_sqlite.py"]
+
+    subgraph DB["SQLite: output/transactions.db"]
+        FACT[("transactions<br/>fact table")]
+        DIM[("accounts, devices,<br/>network_slices")]
+        DIM --- FACT
+    end
+
+    LD --> DB
+    DB --> SQLQ["02_kpis.sql<br/>03_anomaly_checks.sql"]
+    SQLQ --> SR[("output/sql_results/*.csv")]
+
+    AD --> REV[("anomalies_review_list.csv<br/>ranked, with reasons")]
+    AD --> SCORES[("anomaly_scores.csv")]
+    CLEAN --> EXP["export_for_tableau.py<br/>join clean + scores"]
+    SCORES --> EXP
+    EXP --> TAB[("tableau_extract.csv<br/>one wide table")]
+
+    ORCH{{"run_pipeline.py<br/>runs each stage as its own process,<br/>stops on the first failure"}} -.-> CL
+```
+
+This is a **batch pipeline**. Every stage reads files and writes files, and the cleaned CSV is the one source all later stages read from. There is no shared memory between stages, so any stage can be rerun alone and any intermediate file can be opened and inspected.
+
+### Design decisions and trade offs
+
+| Decision | Why | Cost |
+|---|---|---|
+| Stages talk through files | Each step can be rerun and debugged alone; outputs are visible and diffable | Every run recomputes everything; there are no incremental updates |
+| `run_pipeline.py` runs each stage with `check=True` | A failed stage stops the chain, so later stages never run on stale or half written data | Stages run one after another even when they could run in parallel |
+| Columns renamed **by name**, not position | A source export with reordered columns still loads correctly | A renamed source column breaks cleaning, which is the safer outcome |
+| Normalized schema: one fact table, three dimension tables, indexes on timestamp, type and fraud flag | Queries that filter by time or type stay fast, and account data is stored once | Every analysis query needs joins |
+| Denormalized wide extract for Tableau | BI tools work best on one flat table | The same data exists twice in different shapes |
+| Rules written in **both** pandas and SQL | The two versions cross check each other, and the project shows both skills | One rule now lives in two places, which is a real risk of drift |
+| Count of broken rules as the score, distance from normal as the tie break | Every flag explains itself; a reviewer sees exactly why a row is on the list | Every rule counts the same, whatever its real risk |
+
+### How the scoring behaves
+
+The thresholds are **relative to the batch**: "top 5% of amounts" is computed from the data being scored. So the pipeline always flags roughly the same share of transactions, whether the batch is clean or full of fraud. For a recurring job, the thresholds would be frozen from a trusted reference period and then applied to new data, so an unusual day actually produces more flags.
+
+Checked against the dataset's own `fraud_flag`, 53.6% of flagged transactions are labelled fraud, against 48.1% overall. That is only about 1.1 times the base rate, so on this synthetic label the rules are explainable but barely better than chance. That is an honest result to report, not a bug: these rules describe unusual behaviour, and the label does not appear to follow behaviour.
+
+### Scaling
+
+At 1,000 rows everything fits in memory. At millions of rows, pandas memory and SQLite's single writer become the limits. The next step would be DuckDB or a warehouse table partitioned by date, with the pipeline processing one new time window per run instead of the full history.
 
 ## Project layout
 ```
